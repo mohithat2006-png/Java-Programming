@@ -1,0 +1,108 @@
+import java.util.Scanner;
+
+class Patient {
+    private int patientId;
+    private String patientName;
+    private int age;
+    private String diagnosis;
+
+    private static String hospitalName = "Apollo Hospitals";
+    public static final int MAX_PATIENTS = 100;
+
+    public Patient(int patientId, String patientName, int age, String diagnosis) {
+        this.patientId = patientId;
+        this.patientName = patientName;
+        this.age = age;
+        this.diagnosis = diagnosis;
+    }
+
+    public int getPatientId() {
+        return patientId;
+    }
+
+    public String getPatientName() {
+        return patientName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getDiagnosis() {
+        return diagnosis;
+    }
+
+    public static String getHospitalName() {
+        return hospitalName;
+    }
+
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setDiagnosis(String diagnosis) {
+        this.diagnosis = diagnosis;
+    }
+
+    public void displayDetails() {
+        System.out.println("Patient Id:" + patientId);
+        System.out.println("Patient Name:" + patientName);
+        System.out.println("Age:" + age);
+        System.out.println("Diagnosis:" + diagnosis);
+        System.out.println("Hospital Name:" + hospitalName);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Patient ID:");
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Enter Patient Name:");
+        String name = sc.nextLine();
+
+        System.out.print("Enter Age:");
+        int age = sc.nextInt();
+        sc.nextLine();
+
+        if (age < 1 || age > 100) {
+            System.out.println("Invalid Age");
+            sc.close();
+            return;
+        }
+
+        System.out.print("Enter Diagnosis:");
+        String diagnosis = sc.nextLine();
+
+        Patient patient = new Patient(id, name, age, diagnosis);
+
+        System.out.println("Patient Record Created");
+
+        System.out.print("Enter new diagnosis to update:");
+        String newDiagnosis = sc.nextLine();
+
+        patient.setDiagnosis(newDiagnosis);
+
+        System.out.println("Patient Record Updated");
+
+        System.out.print("Enter patient ID to display:");
+        int searchId = sc.nextInt();
+
+        if (patient.getPatientId() == searchId) {
+            System.out.println("Patient details Displayed");
+            patient.displayDetails();
+        } else {
+            System.out.println("Patient Not found");
+        }
+
+        sc.close();
+    }
+}
